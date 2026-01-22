@@ -1458,3 +1458,132 @@ section,
 .portfolio-filters::-webkit-scrollbar {
   display: none; /* ซ่อน scrollbar สำหรับ Chrome/Safari */
 }
+
+/* Container ใหม่ที่เพิ่มเข้าไป */
+.portfolio-filters-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* ปรับปรุงตัว ul เดิม */
+.portfolio-filters {
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* ไม้ตายความลื่นใน iOS */
+  scrollbar-width: none; /* ซ่อนแถบเลื่อน (Firefox) */
+  gap: 10px;
+  padding: 10px 0 !important;
+  scroll-snap-type: x mandatory; /* ปัดแล้วหยุดให้ตรงปุ่ม */
+}
+
+.portfolio-filters::-webkit-scrollbar {
+  display: none; /* ซ่อนแถบเลื่อน (Chrome/Safari) */
+}
+
+.portfolio-filters li {
+  flex: 0 0 auto;
+  scroll-snap-align: start; /* จุดหยุดของการปัด */
+  white-space: nowrap;
+  /* สี Font เมื่อเลือก (Active) */
+  transition: 0.3s;
+}
+
+/* ทำให้ Font เป็นสีขาวเมื่อเลือก */
+.portfolio-filters li.filter-active {
+  color: #ffffff !important;
+  background-color: var(--accent-color) !important;
+}
+
+/* ปุ่มลูกศรซ้ายขวา (จะโชว์เฉพาะตอนจอกว้าง หรือจะเปิดทิ้งไว้ก็ได้) */
+.filter-nav-btn {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ในมือถือ ถ้าปัดง่ายแล้ว จะซ่อนลูกศรก็ได้ หรือถ้าจะเก็บไว้ให้คนกดก็ดีครับ */
+@media (max-width: 768px) {
+  .filter-nav-btn {
+    width: 30px; /* ลดขนาดลงหน่อยในมือถือ */
+    height: 30px;
+  }
+}
+
+/* Container หลัก */
+.portfolio-filters-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* จัดกลางสำหรับจอคอม */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* ปรับปรุงตัว ul ให้ยืดหยุ่นตามหน้าจอ */
+.portfolio-filters {
+  display: flex !important;
+  flex-wrap: wrap;       /* จอคอม: ให้ตกบรรทัดใหม่ได้ถ้าปุ่มเยอะเกินไป */
+  justify-content: center; /* จัดปุ่มให้อยู่ตรงกลางจอ */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+}
+
+/* ซ่อนปุ่มลูกศรในจอ Notebook / PC (ตั้งแต่ 769px ขึ้นไป) */
+@media (min-width: 769px) {
+  .filter-nav-btn {
+    display: none !important;
+  }
+}
+
+/* การตั้งค่าเฉพาะสำหรับหน้าจอมือถือ (Responsive) */
+@media (max-width: 768px) {
+  .portfolio-filters-wrapper {
+    justify-content: flex-start; /* มือถือ: ชิดซ้ายเพื่อให้เห็นว่าปัดขวาได้ */
+  }
+
+  .portfolio-filters {
+    flex-wrap: nowrap;         /* มือถือ: ห้ามตกบรรทัด เพื่อให้ปัดซ้าย-ขวาได้ */
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding: 10px 0 !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  /* แสดงปุ่มลูกศรเฉพาะในมือถือ */
+  .filter-nav-btn {
+    display: flex !important;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+}
+
+/* ตกแต่งปุ่มที่ถูกเลือก (Active) ให้สี Font เป็นขาว */
+.portfolio-filters li.filter-active {
+  color: #ffffff !important;
+  background-color: var(--accent-color) !important;
+  padding: 7px 18px;
+  border-radius: 50px;
+}

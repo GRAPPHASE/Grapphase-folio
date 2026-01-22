@@ -410,3 +410,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== START AT ALL =====
   applyAllLimit();
     });
+
+    function scrollFilters(direction) {
+  const container = document.getElementById('filterList');
+  const scrollAmount = 250; // ปรับความแรงในการเลื่อนได้ที่นี่
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
