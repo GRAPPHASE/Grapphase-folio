@@ -1363,3 +1363,98 @@ section,
   z-index: 2;
 }
 
+/* ค้นหาส่วนที่เกี่ยวกับ .portfolio-filters หรือวางต่อท้ายไฟล์ main.css */
+@media (max-width: 768px) {
+  .portfolio-filters {
+    display: flex !important;           /* เปลี่ยนการเรียงเป็นแนวนอน */
+    overflow-x: auto !important;       /* เปิดให้เลื่อนซ้าย-ขวาได้ถ้าเกินขอบจอ */
+    overflow-y: hidden;
+    white-space: nowrap;               /* บังคับไม่ให้ข้อความขึ้นบรรทัดใหม่ */
+    padding: 10px 15px !important;     /* เพิ่มช่องว่างด้านข้างให้ปัดถนัดขึ้น */
+    margin: 0 -15px 20px -15px !important; /* ยืดแถบสีให้เต็มขอบจอซ้ายขวา */
+    justify-content: flex-start !important;
+    -webkit-overflow-scrolling: touch; /* ทำให้การปัดใน iPhone ลื่นไหล */
+    list-style: none;
+  }
+
+  /* ซ่อนแถบ Scrollbar เพื่อความสวยงามสะอาดตา */
+  .portfolio-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-filters li {
+    flex: 0 0 auto;                    /* ป้องกันไม่ให้ปุ่มหดขนาด */
+    margin: 0 5px !important;          /* ระยะห่างระหว่างปุ่ม */
+    padding: 8px 16px !important;      /* ขนาดของปุ่ม */
+    background: #f4f4f4;               /* สีพื้นหลังปุ่ม (ปรับตามดีไซน์) */
+    border-radius: 50px;               /* ทำปุ่มมนๆ แบบ Pinterest */
+    font-size: 13px !important;        /* ปรับขนาดตัวอักษรให้พอดีมือถือ */
+    transition: 0.3s;
+  }
+
+  .portfolio-filters li.filter-active {
+    background: var(--accent-color);   /* สีเมื่อกดเลือก */
+    color: #fff;
+  }
+}
+
+@media (max-width: 768px) {
+  .isotope-item {
+    width: 50% !important; /* แสดง 2 รูปคู่กัน */
+    padding: 5px !important; /* เว้นระยะห่างเล็กน้อย */
+  }
+}
+
+/* --- ส่วนของ Font สีขาวเมื่อเลือกหมวดหมู่ --- */
+.portfolio-filters li.filter-active {
+  background: var(--accent-color) !important;
+  color: #ffffff !important; /* บังคับให้เป็นสีขาว */
+}
+
+/* --- ส่วนของปุ่มลูกศรซ้าย-ขวา --- */
+.filter-nav-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.filter-nav-btn:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* ซ่อนปุ่มลูกศรในมือถือ (เพราะใช้นิ้วปัดสะดวกกว่า) */
+@media (max-width: 768px) {
+  .filter-nav-btn {
+    display: none;
+  }
+  
+  .portfolio-filters {
+    margin: 0 !important; /* ปรับ margin ให้พอดีจอ */
+    padding: 10px 0 !important;
+  }
+}
+
+/* ตกแต่งแถบ Filter ให้ดู Clean แบบ Pinterest */
+.portfolio-filters {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* ซ่อน scrollbar สำหรับ Firefox */
+  gap: 10px;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.portfolio-filters::-webkit-scrollbar {
+  display: none; /* ซ่อน scrollbar สำหรับ Chrome/Safari */
+}
